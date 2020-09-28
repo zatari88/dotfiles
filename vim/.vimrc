@@ -25,7 +25,7 @@ augroup numbertoggle
 augroup END
 
 set colorcolumn=80
-highlight ColorColumn ctermbg=8
+highlight ColorColumn ctermbg=18
 
 set lazyredraw
 
