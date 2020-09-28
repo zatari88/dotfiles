@@ -2,3 +2,6 @@ vim/.vim/backup/*
 vim/.vim/backup/.*
 vim/.vim/tmp/*
 vim/.vim/tmp/.*
+vim/.vim/colors/base16*
+
+config/.config/base16*
