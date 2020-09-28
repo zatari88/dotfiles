@@ -34,3 +34,15 @@ set backup
 set backupdir=~/.vim/backup
 set directory=~/.vim/tmp
 
+"Start WSL terminal clipbaord support
+func! GetSelectedText()
+    normal gv"xy
+    let result = getreg("x")
+    return result
+endfunc
+
+if !has("clipboard") && executable("clip.exe")
+    noremap <C-C> :call system('clip.exe', GetSelectedText())<CR>
+    noremap <C-X> :call system('clip.exe', GetSelectedText())<CR>gvx
+endif
+"End WSL terminal clipboard support

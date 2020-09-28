@@ -14,6 +14,7 @@ alias fgrep='fgrep --color=auto'
 
 # Directory listing shortcuts with color
 alias ls='ls -hF --color=tty'
+alias ll='ls -lah'
 alias la='ls -lah'
 
 alias dir='ls --color=auto --format=vertical'
