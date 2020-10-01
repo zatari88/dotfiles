@@ -18,15 +18,15 @@ stow vim
 stow git
 
 if [[ "$OSTYPE" == "linux-gnu" && "$(uname -r)" == *"Microsoft" ]]; then
+    echo gitconfig for Linux on WSL
     git config --global core.autocrlf false
     git config --global core.filemode false
 elif [[ "$OSTYPE" == "linux-gnu" ]]; then
-    printf('gitconfig for Linux')
+    echo gitconfig for Linux
     git config --global core.autocrlf false
-    git config --global core.filemode false
+    git config --global core.filemode true
 elif [[ "$OSTYPE" == "cygwin" ]]; then
-    printf('gitconfig for Cygwin')
-    git config --global core.autocrlf false
+    echo gitconfig for Cygwin
     git config --global core.autocrlf true
     git config --global core.filemode true
 fi
