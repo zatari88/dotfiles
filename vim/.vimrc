@@ -38,8 +38,8 @@ set hlsearch
 set ignorecase
 set smartcase   " Captital letters in search terms forces case sensitive
 " Manually set case:
-"	ignore case: /{search term}\c
-"	follow case: /{search term}\C
+"    ignore case: /{search term}\c
+"    follow case: /{search term}\C
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Set up the visuals
@@ -67,6 +67,7 @@ highlight ColorColumn ctermbg=18
 
 " Show a specific set of whitespace characters
 set list
+set listchars=tab:»\ ,extends:›,precedes:‹,nbsp:·,trail:·
 "set listchars=tab:»\ ,extends:›,precedes:‹,nbsp:·,trail:·,eol:$
-set listchars=tab:|,trail:_,extends:>,precedes:<,nbsp:~
+"set listchars=tab:|\ ,trail:_,extends:>,precedes:<,nbsp:~
 

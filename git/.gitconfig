@@ -1,0 +1,12 @@
+[user]
+    email = zatari88@gmail.com
+    name = Zatari88
+[core]
+	autocrlf = false
+	filemode = false
+[alias]
+    tree = log --graph --decorate --pretty=oneline --abbrev-commit -n 30
+    all-tree = log --all --graph --decorate --oneline --simplify-by-decoration
+    log-adog = log --all --decorate --oneline --graph
+    logadog = log --all --decorate --oneline --graph
+    ladog = log --all --decorate --oneline --graph

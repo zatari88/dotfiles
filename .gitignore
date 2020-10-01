@@ -3,5 +3,6 @@ vim/.vim/backup/.*
 vim/.vim/tmp/*
 vim/.vim/tmp/.*
 vim/.vim/colors/base16*
+vim/.vim/.netrwhist
 
 config/.config/base16*
