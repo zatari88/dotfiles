@@ -38,6 +38,10 @@ if [ -f "${HOME}/.private_variables" ] ; then
   source "${HOME}/.private_variables"
 fi
 
+if [ -f "${HOME}/.bash_colors" ] ; then
+  source "${HOME}/.bash_colors"
+fi
+
 # Set PATH so it includes user's private bin if it exists
 # if [ -d "${HOME}/bin" ] ; then
 #   PATH="${HOME}/bin:${PATH}"

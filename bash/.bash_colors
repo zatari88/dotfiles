@@ -1,5 +1,9 @@
+#!/bin/bash
+
 #
-# ~/.bashrc
+# ~/.bash_colors
+# This is a helper file which sets up the base16 colors and removes the
+# background colors for folders
 #
 
 # If not running interactively, don't do anything
