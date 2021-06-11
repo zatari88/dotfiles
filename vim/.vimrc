@@ -14,6 +14,7 @@ set autoindent
 
 " Makes refresh a little faster. Don't redraw everything
 set lazyredraw
+set ttyfast
 
 " configure where swap files go
 set backup
@@ -42,7 +43,7 @@ set smartcase   " Captital letters in search terms forces case sensitive
 "    follow case: /{search term}\C
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Set up the visuals
+" Set up the aesthetics
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Set my default colorscheme if base16 is not configured yet
@@ -71,3 +72,5 @@ set listchars=tab:»\ ,extends:›,precedes:‹,nbsp:·,trail:·
 "set listchars=tab:»\ ,extends:›,precedes:‹,nbsp:·,trail:·,eol:$
 "set listchars=tab:|\ ,trail:_,extends:>,precedes:<,nbsp:~
 
+set noerrorbells
+set showmode

@@ -7,6 +7,6 @@
 [alias]
     tree = log --graph --decorate --pretty=oneline --abbrev-commit -n 30
     all-tree = log --all --graph --decorate --oneline --simplify-by-decoration
-    log-adog = log --all --decorate --oneline --graph
-    logadog = log --all --decorate --oneline --graph
-    ladog = log --all --decorate --oneline --graph
+    log-adog = log --all --decorate --oneline --graph --abbrev-commit
+    logadog = log --all --decorate --oneline --graph --abbrev-commit
+    ladog = log --all --decorate --oneline --graph --abbrev-commit
