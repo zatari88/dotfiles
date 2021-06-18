@@ -1,5 +1,11 @@
 #!/bin/bash
 
+sudo apt install -y \
+    vim
+    tmux
+    git
+    stow
+
 # clone base16-shell
 git clone https://github.com/chriskempson/base16-shell.git ~/.dotfiles/config/.config/base16-shell
 
