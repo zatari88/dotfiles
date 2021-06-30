@@ -5,8 +5,25 @@
 	autocrlf = false
 	filemode = false
 [alias]
-    tree = log --graph --decorate --pretty=oneline --abbrev-commit -n 30
-    all-tree = log --all --graph --decorate --oneline --simplify-by-decoration
-    log-adog = log --all --decorate --oneline --graph --abbrev-commit
-    logadog = log --all --decorate --oneline --graph --abbrev-commit
-    ladog = log --all --decorate --oneline --graph --abbrev-commit
+	tree =			log --graph --decorate --oneline --abbrev-commit -50
+	trees =			log --graph --decorate --oneline --abbrev-commit -50 --simplify-by-decoration
+	tree-simple =	log --graph --decorate --oneline --abbrev-commit -50 --simplify-by-decoration
+	graph =			log --graph --all --decorate --oneline --abbrev-commit -50
+	graphs =		log --graph --all --decorate --oneline --abbrev-commit -50 --simplify-by-decoration
+	graph-simple =	log --graph --all --decorate --oneline --abbrev-commit -50 --simplify-by-decoration
+
+	log-adog = log --all --decorate --oneline --graph --abbrev-commit
+	logadog = log --all --decorate --oneline --graph --abbrev-commit
+
+	# *Probably* will hide if the file changes and *probably* prevent it from
+	# getting commited if it does. This is not the preferred method.
+	# Instead, simply create a template file, and .gitignore the real file, and
+	# then expect people (aka you) to copy the file to make the one that the
+	# system looks for and you will change.
+	hide-changes = update-index --skip-worktree
+	unhide-changes = update-index --no-skip-worktree
+
+	# This is more of a performance one. It will simply not check for changes,
+	# however if it *does* detect changes, they will be reported. There are
+	# other less standard ways that git actually uses as well to detect changes.
+	dont-check-for-changes = update-index --assume-unchanged
