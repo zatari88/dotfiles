@@ -49,3 +49,22 @@ colors:
 	cp ~/.dotfiles/vim/.vim/colors/base16-vim/colors/*.vim ~/.dotfiles/vim/.vim/colors
 	stow config
 	base16_tomorrow-night
+
+gef:
+	pip3 install capstone unicorn keystone-engine ropper
+	git clone https://github.com/hugsy/gef.git ~/.tools/gef
+	stow gdb_gef
+
+gef_delete:
+	rm -r ~/.tools/gef
+	unstow gdb_gef
+
+pwndbg:
+	stow gdb_pwndbg
+	git clone https://github.com/pwndbg/pwndbg.git ~/.tools/pwndbg
+	cd ~/.tools/pwndbg/
+	bash setup.sh
+
+pwndbg_delete:
+	unstow gdb_pwndbg
+	rm -r ~/.tools/pwndbg
