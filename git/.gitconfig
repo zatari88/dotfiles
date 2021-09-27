@@ -8,9 +8,13 @@
 	tree =			log --graph --decorate --oneline --abbrev-commit -50
 	trees =			log --graph --decorate --oneline --abbrev-commit -50 --simplify-by-decoration
 	tree-simple =	log --graph --decorate --oneline --abbrev-commit -50 --simplify-by-decoration
+	treea =			log --graph --decorate --oneline --abbrev-commit
+	tree-all =			log --graph --decorate --oneline --abbrev-commit
 	graph =			log --graph --all --decorate --oneline --abbrev-commit -50
 	graphs =		log --graph --all --decorate --oneline --abbrev-commit -50 --simplify-by-decoration
 	graph-simple =	log --graph --all --decorate --oneline --abbrev-commit -50 --simplify-by-decoration
+	grapha =		log --graph --all --decorate --oneline --abbrev-commit
+	graph-all =		log --graph --all --decorate --oneline --abbrev-commit
 
 	log-adog = log --all --decorate --oneline --graph --abbrev-commit
 	logadog = log --all --decorate --oneline --graph --abbrev-commit
