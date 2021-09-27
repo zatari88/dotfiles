@@ -10,6 +10,9 @@ basics:
 	stow vim
 	stow git
 
+ssh_key:
+	ssh-keygen -t ed25519 -C "zatari88@gmail.com"
+
 git_distro_config:
 	if [[ "$OSTYPE" == "linux-gnu" && "$(uname -r)" == *"Microsoft" ]]; then
 		echo gitconfig for Linux on WSL
