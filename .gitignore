@@ -6,3 +6,5 @@ vim/.vim/colors/base16*
 vim/.vim/.netrwhist
 
 config/.config/base16*
+
+default/*
