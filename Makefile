@@ -56,6 +56,7 @@ gef:
 	stow gdb_gef
 
 gef_delete:
+	#including a delete isn't standard, just for switching between gef and pwndbg 
 	rm -r ~/.tools/gef
 	unstow gdb_gef
 
@@ -66,5 +67,39 @@ pwndbg:
 	bash setup.sh
 
 pwndbg_delete:
+	#including a delete isn't standard, just for switching between pwndbg and gef
 	unstow gdb_pwndbg
 	rm -r ~/.tools/pwndbg
+
+rizin: cutter
+	# Current plan is to just always install cutter (the rizin GUI)
+	# I probably am just going to get started with the GUI anyway, but
+	# these might get broken out later?
+
+cutter:
+	git clone --recurse-submodules https://github.com/rizinorg/cutter ~/.tools/cutter
+	pushd ~/.tools/cutter
+	#install cutter build reqs
+	sudo apt install -y build-essential
+	sudo apt install -y cmake
+	sudo apt install -y meson
+	sudo apt install -y libzip-dev
+	sudo apt install -y zlib1g-dev
+	sudo apt install -y qt5-default
+	sudo apt install -y libqt5svg5-dev
+	sudo apt install -y qttools5-dev
+	sudo apt install -y qttolls5-dev-tools
+	#install optional deps
+	## building with CUTTER_ENABLE_KSYNTAXHIGHLIGHTING (Default)
+	sudo apt install -y libkf5syntaxhighlighting-dev
+	## building with CUTTER_ENABLE_GRAPHVIZ (Default)
+	sudo apt install -y libgraphviz-dev
+	## building with CUTTER_ENABLE_PYTHON_BINDINGS
+	#sudo apt install -y libshiboken2-dev
+	#sudo apt install -y libpyside2-dev
+	#sudo apt install -y qtdeclarative5-dev
+	mkdir build
+	pushd ./build
+	cmake ..
+	cmake --build .
+	echo 'export PATH=$PATH:~/.tools/cutter/build
