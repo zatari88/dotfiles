@@ -1,4 +1,6 @@
 
+SHELL:=/bin/bash
+
 basics:
 	sudo apt install -y vim
 	sudo apt install -y tmux
@@ -77,18 +79,19 @@ rizin: cutter
 	# these might get broken out later?
 
 cutter:
-	git clone --recurse-submodules https://github.com/rizinorg/cutter ~/.tools/cutter
-	pushd ~/.tools/cutter
-	#install cutter build reqs
+	#install cutter build reqs, install first to prevent failed reclone if
+	#	deps cannot be found and apt update needs to be called
 	sudo apt install -y build-essential
 	sudo apt install -y cmake
 	sudo apt install -y meson
 	sudo apt install -y libzip-dev
 	sudo apt install -y zlib1g-dev
 	sudo apt install -y qt5-default
+	#if qt5-default fails:
+	#sudo apt install -y qtbase5-dev qtchooser qt5-qmake qtbase5-dev-tools
 	sudo apt install -y libqt5svg5-dev
 	sudo apt install -y qttools5-dev
-	sudo apt install -y qttolls5-dev-tools
+	sudo apt install -y qttools5-dev-tools
 	#install optional deps
 	## building with CUTTER_ENABLE_KSYNTAXHIGHLIGHTING (Default)
 	sudo apt install -y libkf5syntaxhighlighting-dev
@@ -98,8 +101,10 @@ cutter:
 	#sudo apt install -y libshiboken2-dev
 	#sudo apt install -y libpyside2-dev
 	#sudo apt install -y qtdeclarative5-dev
+	git clone --recurse-submodules https://github.com/rizinorg/cutter ~/.tools/cutter
+	cd ~/.tools/cutter
 	mkdir build
-	pushd ./build
+	cd build
 	cmake ..
 	cmake --build .
-	echo 'export PATH=$PATH:~/.tools/cutter/build
+	echo 'export PATH=$PATH:~/.tools/cutter/build' >> ~/.bashrc
