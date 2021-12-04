@@ -15,6 +15,14 @@ basics:
 ssh_key:
 	ssh-keygen -t ed25519 -C "zatari88@gmail.com"
 
+ssh_deamon:
+	echo "This is untested... Hope it works!"
+	sudo apt install -y openssh-server
+	sudo systemctl enable ssh
+	sudo systemctl enable sshd
+	ssh-keygen -A
+	sudo systemctl start ssh
+
 git_distro_config:
 	if [[ "$OSTYPE" == "linux-gnu" && "$(uname -r)" == *"Microsoft" ]]; then
 		echo gitconfig for Linux on WSL
@@ -41,6 +49,13 @@ git_distro_config_linux:
 git_distro_config_cygwin:
 	git config --global core.autocrlf true
 	git config --global core.filemode true
+
+apt_use_repos_over_HTTPS:
+	sudo apt install -y apt-transport-https
+	sudo apt install -y ca-certificates
+	sudo apt install -y curl
+	sudo apt install -y gnupg
+	sudo apt install lsb-release
 
 colors:
 	# clone base16-shell
@@ -108,3 +123,28 @@ cutter:
 	cmake ..
 	cmake --build .
 	echo 'export PATH=$PATH:~/.tools/cutter/build' >> ~/.bashrc
+
+docker: apt_use_repos_over_HTTPS
+	echo "You should probably create the prevent double invoke make system"
+	# get rid of all the old bad docker stuff (not that it will be there)
+	sudo apt remove docker docker-engine docker.io containerd runc
+	# add docker's signing GPG key
+	curl -fsSL https://download.docker.com/linux/$(. /etc/os-release; echo "$ID")/gpg \
+	| sudo apt-key add -
+	# add the docker official repos
+	echo "deb [arch=$(dpkg --print-architecture)] \
+	https://download.docker.com/linux/$(. /etc/os-release; echo "$ID") \
+	$(lsb_release -cs) stable" \
+	| sudo tee /etc/apt/sources.list.d/docker.list
+	sudo apt update
+	sudo apt install -y --no-install-recommends docker-ce cgroupfs-mount
+	sudo systemctl enable docker
+	sudo systemctl start docker
+	echo "Testing that Docker is running: "
+	sudo docker run --rm hello-world
+
+docker-compose: docker
+	echo "You should probably create the prevent double invoke make system"
+	sudo apt update
+	sudo apt install -y python3-pip libffi-dev
+	sudo pip3 install docker-compose
