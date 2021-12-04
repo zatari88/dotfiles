@@ -23,6 +23,9 @@ alias vdir='ls --color=auto --format=long'
 # alias v and vi to vim
 alias v='vim'
 alias vi='vim'
+alias vr='vim -R' # -R = readonly
+alias vir='vim -R' # -R = readonly
+alias vimr='vim -R' # -R = readonly
 
 # Start Windows command prompt from cygwin
 alias cmd='cmd /c start cmd'
