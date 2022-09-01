@@ -1,6 +1,7 @@
 
 SHELL:=/bin/bash
 
+.PHONY: basics
 basics:
 	sudo apt install -y vim
 	sudo apt install -y tmux
@@ -11,6 +12,9 @@ basics:
 	stow tmux
 	stow vim
 	stow git
+
+private_variables:
+	printf '# export VAR="/desired/path\"' >> ${HOME}/.private_variables
 
 ssh_key:
 	ssh-keygen -t ed25519 -C "zatari88@gmail.com"
