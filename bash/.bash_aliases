@@ -14,18 +14,14 @@ alias fgrep='fgrep --color=auto'
 
 # Directory listing shortcuts with color
 alias ls='ls -hF --color=tty'
-alias ll='ls -lah'
-alias la='ls -lah'
+alias {ll,la}='ls -lah'
 
 alias dir='ls --color=auto --format=vertical'
 alias vdir='ls --color=auto --format=long'
 
 # alias v and vi to vim
-alias v='vim'
-alias vi='vim'
-alias vr='vim -R' # -R = readonly
-alias vir='vim -R' # -R = readonly
-alias vimr='vim -R' # -R = readonly
+alias {v,vi}='vim'
+alias {vr,vir,vimr}='vim -R' # -R = readonly
 
 # Start Windows command prompt from cygwin
 alias cmd='cmd /c start cmd'
@@ -51,3 +47,6 @@ alias ...........="cd ../../../../../../../../../.."
 alias ............="cd ../../../../../../../../../../.."
 alias .............="cd ../../../../../../../../../../../.."
 
+# Stow aliases
+alias unstow='stow --delete'
+alias restow='stow --restow' #unstow followed by stow. Used to prune old symlinks

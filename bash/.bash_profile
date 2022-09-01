@@ -43,9 +43,9 @@ if [ -f "${HOME}/.bash_colors" ] ; then
 fi
 
 # Set PATH so it includes user's private bin if it exists
-# if [ -d "${HOME}/bin" ] ; then
-#   PATH="${HOME}/bin:${PATH}"
-# fi
+if [ -d "${HOME}/bin" ] ; then
+  PATH="${HOME}/bin:${PATH}"
+fi
 
 # Set MANPATH so it includes users' private man if it exists
 # if [ -d "${HOME}/man" ]; then
@@ -56,5 +56,10 @@ fi
 # if [ -d "${HOME}/info" ]; then
 #   INFOPATH="${HOME}/info:${INFOPATH}"
 # fi
+
+# Set PATH so it includes user's private bin if it exists
+if [ -f "${HOME}/.bash_local" ] ; then
+  source "${HOME}/.bash_local"
+fi
 
 set show-all-if-ambiguous on
