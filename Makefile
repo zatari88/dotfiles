@@ -2,19 +2,39 @@
 SHELL:=/bin/bash
 
 .PHONY: basics
-basics:
+basics: _basics colors private_variables passwords git_distro_config
+
+.PHONY: _basics
+_basics:
 	sudo apt install -y vim
 	sudo apt install -y tmux
 	sudo apt install -y git
 	sudo apt install -y stow
-
+	sudo apt install -y taskwarrior
 	stow bash
 	stow tmux
 	stow vim
 	stow git
 
+.PHONY: colors
+colors:
+	# clone base16-shell
+	git clone https://github.com/chriskempson/base16-shell.git ~/.dotfiles/config/.config/base16-shell
+	# clone base16-vim
+	git clone https://github.com/chriskempson/base16-vim.git ~/.dotfiles/vim/.vim/colors/base16-vim
+	# move the vim color files to the .vim color folder
+	cp ~/.dotfiles/vim/.vim/colors/base16-vim/colors/*.vim ~/.dotfiles/vim/.vim/colors
+	stow config
+	base16_tomorrow-night
+
+.PHONY: private_variables
 private_variables:
 	printf '# export VAR="/desired/path\"' >> ${HOME}/.private_variables
+
+.PHONY: passwords
+passwords:
+	python3 -m pip install numpy
+	stow passwords
 
 ssh_key:
 	ssh-keygen -t ed25519 -C "zatari88@gmail.com"
@@ -60,16 +80,6 @@ apt_use_repos_over_HTTPS:
 	sudo apt install -y curl
 	sudo apt install -y gnupg
 	sudo apt install lsb-release
-
-colors:
-	# clone base16-shell
-	git clone https://github.com/chriskempson/base16-shell.git ~/.dotfiles/config/.config/base16-shell
-	# clone base16-vim
-	git clone https://github.com/chriskempson/base16-vim.git ~/.dotfiles/vim/.vim/colors/base16-vim
-	# move the vim color files to the .vim color folder
-	cp ~/.dotfiles/vim/.vim/colors/base16-vim/colors/*.vim ~/.dotfiles/vim/.vim/colors
-	stow config
-	base16_tomorrow-night
 
 gef:
 	pip3 install capstone unicorn keystone-engine ropper
