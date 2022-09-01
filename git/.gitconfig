@@ -1,23 +1,51 @@
-[user]
-    email = zatari88@gmail.com
-    name = Zatari88
+#[user] # included in the .giconfig_local file. DO NOT CHECK IN CHANGES HERE
+	#email = zatari88@gmail.com
+	#name = Zatari88
 [core]
 	autocrlf = false
 	filemode = false
 [alias]
-	tree =			log --graph --decorate --oneline --abbrev-commit -50
-	trees =			log --graph --decorate --oneline --abbrev-commit -50 --simplify-by-decoration
-	tree-simple =	log --graph --decorate --oneline --abbrev-commit -50 --simplify-by-decoration
-	treea =			log --graph --decorate --oneline --abbrev-commit
-	tree-all =			log --graph --decorate --oneline --abbrev-commit
-	graph =			log --graph --all --decorate --oneline --abbrev-commit -50
-	graphs =		log --graph --all --decorate --oneline --abbrev-commit -50 --simplify-by-decoration
-	graph-simple =	log --graph --all --decorate --oneline --abbrev-commit -50 --simplify-by-decoration
-	grapha =		log --graph --all --decorate --oneline --abbrev-commit
-	graph-all =		log --graph --all --decorate --oneline --abbrev-commit
+	whoami = !"git config user.name && git config user.email"
 
-	log-adog = log --all --decorate --oneline --graph --abbrev-commit
-	logadog = log --all --decorate --oneline --graph --abbrev-commit
+	# these are basically not used. They are here for historical reasons and to
+	# help remember them for when this gitconfig is not installed on a machine
+	log-adog = log --all --decorate --oneline --graph
+	logadog  = log --all --decorate --oneline --graph
+
+	# Define all of the log commands with alias expansion to avoid having
+	# a ton of lines which all have the same content in them. This allows me to
+	# see more clearly how each of them _differs_
+	log-base = log --graph --decorate --abbrev-commit
+	# log-oneline isn't really used much in favor of the custom log-format-cds
+	log-oneline = !"git log-base" --oneline
+	# "Format Commit-hash author-Date Subject" Explaination:
+	# %C(auto) sets the coloration to the same you would expect from --oneline
+	# %h prints the abbreviated hash for the commit
+	# %ad prints the author-date for the commit
+	# %s prints the subject text for the commit
+	# %C(reset) resets the color to the default for the terminal
+	# %an prints the author's name
+	# %ae prints the author's email
+	log-format-cds = !"git log-base" --format=format:'%C(auto)%h (%ad) %d %s%C(reset)' --date=short
+	log-format-cds-name = !"git log-base" --format=format:'%C(auto)%h (%an) (%ad) %d %s%C(reset)' --date=short
+	log-format-cds-email = !"git log-base" --format=format:'%C(auto)%h (%ae) (%ad) %d %s%C(reset)' --date=short
+
+	# tree commands print out the history of the commit currently checked out
+	# straight back to the root node and nothing else
+	tree-base =	!"git log-format-cds"
+	tree =		!"git tree-base" -40
+	trees =		!"git tree-base" -40 --simplify-by-decoration
+	treea =		!"git tree-base"
+	treen =		!"git log-format-cds-name"
+	treee =		!"git log-format-cds-email"
+
+	# graph commands print out the history of all commits of the whole repo
+	graph-base =	!"git log-format-cds" --all
+	graph =			!"git graph-base" -40
+	graphs =		!"git graph-base" -40 --simplify-by-decoration
+	grapha =		!"git graph-base"
+	graphn =		!"git log-format-cds-name" --all
+	graphe =		!"git log-format-cds-email" --all
 
 	# *Probably* will hide if the file changes and *probably* prevent it from
 	# getting commited if it does. This is not the preferred method.
@@ -31,3 +59,23 @@
 	# however if it *does* detect changes, they will be reported. There are
 	# other less standard ways that git actually uses as well to detect changes.
 	dont-check-for-changes = update-index --assume-unchanged
+
+	# typos
+	ad = add
+	branhc = branch
+	checout = checkout
+	cherrypick = cherry-pick
+	comit = commit
+	comitt = commit
+	committ = commit
+	dif = diff
+	idff = diff
+	stat = status
+	statu = status
+	staus = status
+	stauts = status
+	submodules = submodule
+	tags = tag
+
+[include]
+	path = ~/.gitconfig_local
