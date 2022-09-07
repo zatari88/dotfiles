@@ -50,3 +50,21 @@ alias .............="cd ../../../../../../../../../../../.."
 # Stow aliases
 alias unstow='stow --delete'
 alias restow='stow --restow' #unstow followed by stow. Used to prune old symlinks
+
+findFile() {
+    if [[ $1 == '' ]] || [[ $2 == '' ]]; then
+        echo 'Useage: findFile <path> <iname>'
+    else
+        # 2>&1 pushes stderr through stdout then grep -v removes messages with
+        # 'Permission denied' in the text
+        find $1 -iname $2 2>&1 | grep -v "Permission denied"
+    fi
+}
+
+findFileExact() {
+    if [[ $1 == '' ]] || [[ $2 == '' ]]; then
+        echo 'Useage: findFile <path> <name>'
+    else
+        find $1 -name $2 2>&1 | grep -v "Permission denied"
+    fi
+}
