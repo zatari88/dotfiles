@@ -2,6 +2,14 @@
 " Set up the functionality
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+" Disallow opening directories. If any arg is a directory, quit
+for f in argv()
+    if isdirectory(f)
+        echomsg "vimrc: Cowardly refusing to edit directory " . f
+        quit
+    endif
+endfor
+
 " Set j and k to move up and down by visual lines rather than line numbers
 nnoremap j gj
 nnoremap k gk
