@@ -4,6 +4,13 @@
 [core]
 	autocrlf = false
 	filemode = false
+
+[pull]
+	rebase = true
+
+[submodule]
+	recurse = true
+
 [alias]
 	whoami = !"git config user.name && git config user.email"
 
