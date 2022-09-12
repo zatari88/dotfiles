@@ -68,3 +68,8 @@ findFileExact() {
         find $1 -name $2 2>&1 | grep -v "Permission denied"
     fi
 }
+
+fixWSL2ResolutionErrors() {
+    printf "\n[network]\ngenerateResolvConf=false\n" | sudo tee -a /etc/wsl.conf
+    printf "nameserver 8.8.8.8\n" | sudo tee -a /etc/resolv.conf
+}
